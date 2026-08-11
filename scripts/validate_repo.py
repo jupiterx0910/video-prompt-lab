@@ -13,6 +13,7 @@ REQUIRED = [
     "LICENSE",
     "CONTRIBUTING.md",
     ".github/workflows/pages.yml",
+    ".github/workflows/release-v2-2.yml",
     "docs/prompt-engineering.md",
     "docs/model-adaptation.md",
     "docs/prompt-compiler-v2.md",
@@ -46,6 +47,7 @@ REQUIRED = [
     "examples/cases/dialogue-cafe-key.md",
     "examples/cases/i2v-portrait-reaction.md",
     "launch/README.md",
+    "launch/release-v2.2.0.md",
 ]
 
 FAILURE_REQUIRED_FIELDS = {
