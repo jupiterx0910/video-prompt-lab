@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="720" viewBox="0 0 1440 720" role="img" aria-labelledby="title desc">
+  <title id="title">Video Prompt Lab interactive compiler demo</title>
+  <desc id="desc">A technical interface showing prompt inputs flowing into Video IR, capability routing, a selected model family, compiled prompt, preflight, and failure repair.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#080b10"/>
+      <stop offset="1" stop-color="#0d141c"/>
+    </linearGradient>
+    <linearGradient id="accentWash" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7ce0c3" stop-opacity=".16"/>
+      <stop offset="1" stop-color="#7ce0c3" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="24" flood-color="#000" flood-opacity=".34"/>
+    </filter>
+    <style>
+      .sans{font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+      .mono{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace}
+      .muted{fill:#8f9caf}
+      .text{fill:#f4f7fb}
+      .accent{fill:#8de7cd}
+      .line{stroke:#273346;stroke-width:1}
+      .small{font-size:12px}
+      .tiny{font-size:10px}
+    </style>
+  </defs>
+  <rect width="1440" height="720" rx="28" fill="url(#bg)"/>
+  <circle cx="1220" cy="-40" r="330" fill="#7ce0c3" opacity=".035"/>
+
+  <g class="sans">
+    <g transform="translate(48 42)">
+      <rect width="42" height="42" rx="10" fill="#151d29" stroke="#34445b"/>
+      <text x="21" y="26" text-anchor="middle" class="mono accent" font-size="11" font-weight="800">VPL</text>
+      <text x="58" y="17" class="text" font-size="17" font-weight="750">Video Prompt Lab</text>
+      <text x="58" y="36" class="muted small">Interactive prompt compiler · zero dependency</text>
+    </g>
+
+    <g transform="translate(1110 51)">
+      <rect width="270" height="34" rx="8" fill="#101722" stroke="#2f3c50"/>
+      <text x="14" y="21" class="mono accent tiny">npx skills add jupiterx0910/video-prompt-lab</text>
+    </g>
+
+    <g transform="translate(48 118)">
+      <text class="accent mono tiny" letter-spacing="1">IDEA → VIDEO IR → CAPABILITY ROUTER → PROMPT → PREFLIGHT → REPAIR</text>
+      <text y="47" class="text" font-size="38" font-weight="780" letter-spacing="-1.5">One idea. A visible reasoning pipeline.</text>
+      <text y="79" class="muted" font-size="15">The demo exposes what changes, why a model is routed, and which layer to repair after a bad render.</text>
+    </g>
+
+    <g transform="translate(48 230)" filter="url(#shadow)">
+      <rect width="672" height="432" rx="18" fill="#0d1118" stroke="#263244"/>
+      <text x="22" y="32" class="accent mono tiny">01 / BUILDER</text>
+      <text x="22" y="57" class="text" font-size="18" font-weight="720">Production specification</text>
+
+      <g transform="translate(22 82)">
+        <text class="muted tiny">SUBJECT LOCK</text>
+        <rect y="10" width="304" height="58" rx="9" fill="#111722" stroke="#263244"/>
+        <text x="12" y="33" class="text small">Charcoal running shoe · white logo</text>
+        <text x="12" y="51" class="muted tiny">same sole geometry · unchanged materials</text>
+
+        <text x="322" class="muted tiny">ENVIRONMENT</text>
+        <rect x="322" y="10" width="306" height="58" rx="9" fill="#111722" stroke="#263244"/>
+        <text x="334" y="33" class="text small">Wet black stone after rain</text>
+        <text x="334" y="51" class="muted tiny">soft daylight · shallow water film</text>
+      </g>
+
+      <g transform="translate(22 166)">
+        <text class="muted tiny">ACTION CAUSALITY</text>
+        <rect y="10" width="628" height="74" rx="9" fill="#111722" stroke="#263244"/>
+        <text x="12" y="34" class="text small">drop enters frame</text>
+        <text x="151" y="34" class="accent small">→</text>
+        <text x="176" y="34" class="text small">heel compresses + water displaces</text>
+        <text x="420" y="34" class="accent small">→</text>
+        <text x="445" y="34" class="text small">clean hero stop</text>
+        <text x="12" y="58" class="muted tiny">One primary action chain. No decorative motion added.</text>
+      </g>
+
+      <g transform="translate(22 272)">
+        <text class="muted tiny">CAPTURE / PHYSICS</text>
+        <rect y="10" width="196" height="76" rx="9" fill="#111722" stroke="#263244"/>
+        <text x="12" y="34" class="text small">50mm restrained push-in</text>
+        <text x="12" y="55" class="muted tiny">ends locked on logo</text>
+        <rect x="216" y="10" width="196" height="76" rx="9" fill="#111722" stroke="#263244"/>
+        <text x="228" y="34" class="text small">Soft camera-left light</text>
+        <text x="228" y="55" class="muted tiny">controlled wet reflection</text>
+        <rect x="432" y="10" width="196" height="76" rx="9" fill="#111722" stroke="#263244"/>
+        <text x="444" y="34" class="text small">Impact + water + ambience</text>
+        <text x="444" y="55" class="muted tiny">sound tied to events</text>
+      </g>
+
+      <g transform="translate(22 382)">
+        <rect width="628" height="28" rx="8" fill="#10201d" stroke="#2f6659"/>
+        <text x="12" y="18" class="accent mono tiny">continuity: logo · sole · laces · color · final orientation remain locked</text>
+      </g>
+    </g>
+
+    <g transform="translate(742 230)" filter="url(#shadow)">
+      <rect width="650" height="432" rx="18" fill="#0d1118" stroke="#263244"/>
+      <rect width="650" height="118" rx="18" fill="url(#accentWash)"/>
+      <text x="22" y="32" class="accent mono tiny">02 / ROUTER</text>
+      <text x="22" y="59" class="text" font-size="24" font-weight="760">Seedance</text>
+      <rect x="538" y="22" width="88" height="24" rx="12" fill="#141c26" stroke="#34445b"/>
+      <text x="582" y="38" text-anchor="middle" class="muted mono" font-size="8">EVIDENCE LABEL</text>
+      <text x="22" y="88" class="muted small">Selected by capability overlap for this task — not a global model ranking.</text>
+
+      <g transform="translate(22 112)">
+        <rect width="86" height="24" rx="12" fill="#10201d" stroke="#2f6659"/>
+        <text x="43" y="16" text-anchor="middle" class="accent mono tiny">product</text>
+        <rect x="94" width="96" height="24" rx="12" fill="#10201d" stroke="#2f6659"/>
+        <text x="142" y="16" text-anchor="middle" class="accent mono tiny">continuity</text>
+        <rect x="198" width="110" height="24" rx="12" fill="#10201d" stroke="#2f6659"/>
+        <text x="253" y="16" text-anchor="middle" class="accent mono tiny">complex_motion</text>
+      </g>
+
+      <line x1="22" y1="159" x2="628" y2="159" class="line"/>
+      <text x="22" y="184" class="accent mono tiny">VIDEO IR</text>
+      <rect x="22" y="198" width="606" height="94" rx="10" fill="#080d13" stroke="#263244"/>
+      <text x="36" y="221" class="mono muted tiny">motion:</text>
+      <text x="52" y="240" class="mono text tiny">trigger: "shoe drops into frame"</text>
+      <text x="52" y="258" class="mono text tiny">action:  "heel compresses; water pushes outward"</text>
+      <text x="52" y="276" class="mono text tiny">result:  "hero angle settles; state stays locked"</text>
+
+      <text x="22" y="323" class="accent mono tiny">COMPILED PROMPT</text>
+      <rect x="22" y="337" width="606" height="58" rx="10" fill="#080d13" stroke="#263244"/>
+      <text x="36" y="358" class="mono text tiny">Task: 8s, 16:9, product. Subject: charcoal running shoe…</text>
+      <text x="36" y="377" class="mono muted tiny">Action causality → camera → light → sound → continuity → targeted avoid</text>
+
+      <g transform="translate(22 408)">
+        <circle cx="7" cy="7" r="7" fill="#82df9b" opacity=".2"/>
+        <path d="M3.5 7.3 6 9.6 10.7 4.6" fill="none" stroke="#82df9b" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <text x="22" y="11" class="mono" font-size="9" fill="#b8eec5">preflight: structural checks clean</text>
+        <text x="318" y="11" class="muted mono" font-size="9">bad render? diagnose one failed layer, then iterate</text>
+      </g>
+    </g>
+  </g>
+</svg>
