@@ -22,341 +22,106 @@
 
 ---
 
-### Task 1: Structured failure taxonomy
+## Completed implementation
 
-**Files:**
-- Create: `dataset/failures.json`
-- Modify: `docs/failure-diagnosis.md`
-- Modify: `scripts/validate_repo.py`
+### Task 1: Structured failure taxonomy — complete
 
-**Interfaces:**
-- Consumes: existing failure categories and `risk_tags` conventions from `dataset/cases.json`.
-- Produces: `dataset/failures.json` with top-level `schema_version` and `failures`; every failure has `id`, `symptom`, `root_cause`, `fix`, `change_only`, `risk_tags`.
+- Added `dataset/failures.json` with eight distinct failures and repair-only guidance.
+- Updated `docs/failure-diagnosis.md` and `dataset/README.md` to point to the machine-readable taxonomy.
+- Added schema, required-field, unique-ID and risk-tag validation.
+- TDD evidence: validation failed while the file was absent, then passed after the canonical taxonomy was added.
 
-- [ ] **Step 1: Extend validation first**
+### Task 2: Pure compiler module with tests — complete
 
-Add requirements that `dataset/failures.json` exists, parses as JSON, has at least six unique failure IDs, and each failure contains all required non-empty fields.
-
-- [ ] **Step 2: Run validation and verify RED**
-
-Run:
-
-```bash
-python scripts/validate_repo.py
-```
-
-Expected: FAIL because `dataset/failures.json` does not exist.
-
-- [ ] **Step 3: Add the structured taxonomy**
-
-Create at least these failure IDs with specific repair instructions:
+Implemented and exported:
 
 ```text
-identity-drift
-motion-without-cause
-camera-conflict
-synthetic-render-look
-object-state-reset
-time-static
-speaker-audio-swap
-overmotion-i2v
+normalizeIR(state)
+inferCapabilities(state)
+routeModels(models, capabilities, explicitModelId)
+compilePrompt(state, ir, route)
+preflight(state, ir, route)
+buildBeforeAfter(caseRecord, models)
 ```
 
-- [ ] **Step 4: Point the human-readable diagnosis doc to the canonical JSON**
+`demo/compiler.test.mjs` verifies:
 
-Keep the concise table, but state that `dataset/failures.json` is the machine-readable source used by the demo and evals.
+- image-to-video capability inference;
+- dialogue/audio capability inference;
+- explicit model precedence;
+- automatic capability routing;
+- missing-action preflight warning;
+- subject/action/continuity preservation in compiled output;
+- Before/After control-dimension diagnosis.
 
-- [ ] **Step 5: Verify GREEN**
+TDD evidence: the Node suite first failed because `demo/compiler.mjs` did not exist, then passed after the minimal implementation.
 
-Run:
+### Task 3: Interactive static application — complete
 
-```bash
-python scripts/validate_repo.py
-```
-
-Expected: PASS.
-
-- [ ] **Step 6: Commit**
-
-```bash
-git add dataset/failures.json docs/failure-diagnosis.md scripts/validate_repo.py
-git commit -m "feat: add structured failure taxonomy"
-```
-
----
-
-### Task 2: Pure compiler module with tests
-
-**Files:**
-- Create: `demo/compiler.mjs`
-- Create: `demo/compiler.test.mjs`
-
-**Interfaces:**
-- Consumes: parsed router object, case object, and form state.
-- Produces exact exported functions:
-  - `normalizeIR(state) -> object`
-  - `inferCapabilities(state) -> string[]`
-  - `routeModels(models, capabilities, explicitModelId) -> { selected, alternatives, matched, warning }`
-  - `compilePrompt(state, ir, route) -> string`
-  - `preflight(state, ir, route) -> string[]`
-  - `buildBeforeAfter(caseRecord, models) -> { weak, diagnosis, improved }`
-
-- [ ] **Step 1: Write failing Node tests**
-
-Tests must assert:
-- image-to-video infers `image_to_video`;
-- dialogue infers `dialogue_audio` and `sound_sync`;
-- explicit `kling` remains selected even when automatic score favors another model;
-- auto routing returns a selected model and alternatives without a global rank claim;
-- missing action produces a preflight warning;
-- compilation contains subject, action and continuity when provided;
-- Before/After output identifies at least one missing control dimension.
-
-- [ ] **Step 2: Run tests and verify RED**
-
-Run:
-
-```bash
-node --test demo/compiler.test.mjs
-```
-
-Expected: FAIL because `demo/compiler.mjs` does not exist.
-
-- [ ] **Step 3: Implement minimal pure compiler logic**
-
-Rules:
-- Normalize strings with trimming only; do not hallucinate missing scene facts.
-- Infer capabilities from `mode`, `useCase`, dialogue/sound presence, and continuity requirement.
-- Score each model by the count of matching `strengths`; preserve explicit-model precedence.
-- Generate prompt sections in this order: task, subject/environment, trigger-action-consequence, camera, light, sound, continuity, avoid.
-- Preflight warns on missing subject/action, contradictory or absent model capability, and image-to-video over-description risk when applicable.
-
-- [ ] **Step 4: Verify GREEN**
-
-Run:
-
-```bash
-node --test demo/compiler.test.mjs
-```
-
-Expected: all tests pass.
-
-- [ ] **Step 5: Commit**
-
-```bash
-git add demo/compiler.mjs demo/compiler.test.mjs
-git commit -m "feat: add deterministic browser prompt compiler"
-```
-
----
-
-### Task 3: Interactive static application
-
-**Files:**
-- Create: `demo/index.html`
-- Create: `demo/styles.css`
-- Create: `demo/app.js`
-
-**Interfaces:**
-- Consumes:
-  - `../router/models.json`
-  - `../dataset/cases.json`
-  - `../dataset/failures.json`
-  - exports from `./compiler.mjs`
-- Produces one no-build browser application with four sections: Builder, Router, Before/After, Failure Playground.
-
-- [ ] **Step 1: Add structural validation before UI files**
-
-Extend `scripts/validate_repo.py` so CI expects all three demo files and checks that `demo/app.js` contains the three canonical JSON paths and imports `./compiler.mjs`.
-
-- [ ] **Step 2: Run validation and verify RED**
-
-Run:
-
-```bash
-python scripts/validate_repo.py
-```
-
-Expected: FAIL because the demo files are absent.
-
-- [ ] **Step 3: Build semantic HTML shell**
-
-Required controls:
-- mode, use case, target model, duration, aspect ratio;
-- subject, environment, trigger, action, consequence;
-- camera, light, sound, continuity, avoid.
-
-Required output regions:
-- capability chips;
-- router recommendation + alternatives + evidence/cautions;
-- Video IR code block;
-- compiled prompt;
-- preflight warnings;
-- example selector with weak/diagnosis/improved columns;
-- failure selector with symptom/root cause/minimal fix/change-only guidance.
-
-- [ ] **Step 4: Implement data loading and rendering**
-
-`app.js` must:
-- fetch all three JSON files with `Promise.all`;
-- never embed fallback model/case/failure data;
-- show an explicit HTTP-server instruction on load failure;
-- update compiler outputs on form input;
-- provide Copy Prompt and Load Example controls using browser APIs with graceful text fallback.
-
-- [ ] **Step 5: Apply responsive technical-instrument styling**
-
-Use CSS custom properties, system fonts, one accent, monospace output blocks, responsive grid, visible focus states, and `prefers-reduced-motion` support. No external resources.
-
-- [ ] **Step 6: Verify static integrity and JS syntax**
-
-Run:
-
-```bash
-python scripts/validate_repo.py
-node --check demo/app.js
-node --test demo/compiler.test.mjs
-```
-
-Expected: all pass.
-
-- [ ] **Step 7: Commit**
-
-```bash
-git add demo/index.html demo/styles.css demo/app.js scripts/validate_repo.py
-git commit -m "feat: add interactive prompt compiler demo"
-```
-
----
-
-### Task 4: README conversion surface and visual asset
-
-**Files:**
-- Create: `docs/assets/compiler-demo.svg`
-- Modify: `README.md`
-- Modify: `README_EN.md`
-
-**Interfaces:**
-- Consumes: demo paths and verified Skills CLI command.
-- Produces README entry points that send visitors to install, try or understand the project immediately.
-
-- [ ] **Step 1: Extend README invariants in deterministic evals**
-
-Modify `evals/run_evals.py` to require:
+Added:
 
 ```text
-npx skills add jupiterx0910/video-prompt-lab
-python -m http.server
-compiler-demo.svg
 demo/index.html
+demo/styles.css
+demo/app.js
 ```
 
-in both relevant README onboarding surfaces (English can use the same commands).
-
-- [ ] **Step 2: Run evals and verify RED**
-
-Run:
-
-```bash
-python evals/run_evals.py
-```
-
-Expected: FAIL until README content and asset exist.
-
-- [ ] **Step 3: Add a lightweight SVG hero/demo asset**
-
-The SVG must visually show:
+The browser app consumes:
 
 ```text
-Idea → Video IR → Capability Router → Prompt → Preflight → Repair
+../router/models.json
+../dataset/cases.json
+../dataset/failures.json
+./compiler.mjs
 ```
 
-and include a compact sample of input, routed model, and output prompt. It must be repository-authored SVG with no external image references.
+Implemented:
 
-- [ ] **Step 4: Rewrite the README first screen**
+- Prompt Builder;
+- inferred capability chips;
+- explainable model recommendation + alternatives + cautions;
+- Video IR preview;
+- copy-ready prompt;
+- preflight output;
+- canonical Before/After explorer;
+- Failure Playground;
+- copy controls;
+- explicit HTTP-server error when opened in an unsupported `file://` context.
 
-Chinese and English README tops must include:
-- compiler positioning;
-- validation badge;
-- skills.sh badge;
-- one-command install;
-- demo asset;
-- three choices: Try Demo / Install Skill / Read Architecture.
+The final visual system is a dark technical-instrument layout with responsive mobile behavior, system fonts, one accent family and no external resources.
 
-Add a compact Before/After section and local demo command:
+Browser QA was performed through a temporary Chrome/Chromium GitHub Actions workflow. Desktop, mobile and tall full-page screenshots were inspected; the temporary workflow was removed afterward.
+
+### Task 4: README conversion surface — complete
+
+Added `docs/assets/compiler-demo.svg` and rewrote Chinese and English README onboarding around:
+
+```bash
+npx skills add jupiterx0910/video-prompt-lab
+```
+
+and the zero-dependency demo launch:
 
 ```bash
 python -m http.server 8000
-# open /demo/
+# open http://localhost:8000/demo/
 ```
 
-- [ ] **Step 5: Verify GREEN**
+README now leads with:
 
-Run:
+- Prompt Compiler positioning;
+- CI + skills.sh badges;
+- one-command Skill install;
+- compiler visual;
+- Interactive Demo / Skill / Architecture entry points;
+- Before/After explanation;
+- Router, Failure taxonomy, Dataset and CI differentiation.
 
-```bash
-python evals/run_evals.py
-python scripts/validate_repo.py
-```
+TDD evidence: deterministic evals failed until the install command, demo path, launch command and visual asset were present.
 
-Expected: both pass.
+### Task 5: CI gate — complete
 
-- [ ] **Step 6: Commit**
-
-```bash
-git add docs/assets/compiler-demo.svg README.md README_EN.md evals/run_evals.py
-git commit -m "docs: make compiler demo and install path visible"
-```
-
----
-
-### Task 5: CI gate for demo logic
-
-**Files:**
-- Modify: `.github/workflows/validate.yml`
-
-**Interfaces:**
-- Consumes: `demo/compiler.test.mjs` and existing Python validation/evals.
-- Produces: a single validation job that rejects structural or compiler regressions.
-
-- [ ] **Step 1: Add the test command to CI**
-
-After Python validation/evals, run:
-
-```bash
-node --test demo/compiler.test.mjs
-node --check demo/app.js
-```
-
-No npm install step.
-
-- [ ] **Step 2: Push and inspect GitHub Actions**
-
-Expected job steps:
-- Validate repository: success;
-- Run deterministic evals: success;
-- Test demo compiler: success;
-- Check demo browser JS: success.
-
-- [ ] **Step 3: Commit**
-
-```bash
-git add .github/workflows/validate.yml
-git commit -m "ci: test interactive demo compiler"
-```
-
----
-
-### Task 6: PR-level verification and presentation
-
-**Files:**
-- Modify: PR #1 metadata only after all repository checks pass.
-
-**Interfaces:**
-- Consumes: final branch head and GitHub Actions result.
-- Produces: accurate PR title/body describing V2.1 + V2.2 without claiming rendered-video quality.
-
-- [ ] **Step 1: Run complete verification**
+`.github/workflows/validate.yml` runs:
 
 ```bash
 python scripts/validate_repo.py
@@ -365,21 +130,17 @@ node --test demo/compiler.test.mjs
 node --check demo/app.js
 ```
 
-Expected: zero failures.
+No npm install or paid API key is required.
 
-- [ ] **Step 2: Compare branch to `main`**
+### Task 6: Final verification — complete
 
-Check changed file count, additions/deletions, and ensure no unrelated files were modified.
+Latest PR merge-ref verification on 2026-08-11:
 
-- [ ] **Step 3: Verify PR merge-ref GitHub Actions**
+```text
+Validation passed: 34 required files, 27 Markdown files, JSON parsed successfully.
+Eval passed: 5 model profiles, 17 capability tags, dataset coverage, Skill and README invariants valid.
+Node tests: 7 passed, 0 failed.
+Browser JavaScript syntax check: passed.
+```
 
-Require conclusion `success` on the latest run for the final head.
-
-- [ ] **Step 4: Update PR**
-
-Use a title centered on the compiler + interactive demo and a body that includes:
-- V2.1 engineering system;
-- V2.2 interactive experience;
-- verified install command;
-- exact test outputs;
-- explicit non-goals.
+The feature branch is based on `main` and contains only the V2.1/V2.2 prompt-compiler, data, demo, eval, docs and CI work described in the approved designs.
