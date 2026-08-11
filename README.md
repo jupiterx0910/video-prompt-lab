@@ -3,7 +3,9 @@
 > **把一句灵感编译成可执行、可诊断、可迭代的视频制作规格，而不是堆一串“电影感”形容词。**
 
 [![CI](https://img.shields.io/github/actions/workflow/status/jupiterx0910/video-prompt-lab/validate.yml?branch=main&label=validation)](.github/workflows/validate.yml)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-2ea44f)](https://jupiterx0910.github.io/video-prompt-lab/)
 [![skills.sh](https://skills.sh/b/jupiterx0910/video-prompt-lab)](https://skills.sh/jupiterx0910/video-prompt-lab)
+[![Release Notes](https://img.shields.io/badge/release-v2.2.0-7657ff)](launch/release-v2.2.0.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Models](https://img.shields.io/badge/Router-Seedance%20·%20Veo%20·%20Sora%20·%20Kling%20·%20Runway-7657ff)](router/models.json)
 [![Language](https://img.shields.io/badge/Language-中文%20%7C%20English-blue)](README_EN.md)
@@ -14,7 +16,7 @@ Video Prompt Lab 是一个面向 **文生视频、图生视频和 Agent 工作�
 npx skills add jupiterx0910/video-prompt-lab
 ```
 
-**三个入口：** [体验交互式 Demo](demo/index.html) · [安装 Agent Skill](SKILL.md) · [阅读编译器架构](docs/prompt-compiler-v2.md)
+**三个入口：** [在线体验 Live Demo](https://jupiterx0910.github.io/video-prompt-lab/) · [安装 Agent Skill](SKILL.md) · [阅读编译器架构](docs/prompt-compiler-v2.md)
 
 ![Video Prompt Lab compiler demo](docs/assets/compiler-demo.svg)
 
@@ -59,7 +61,9 @@ V2.2 新增一个**零依赖静态 Demo**。它不是套了壳的聊天机器人
 - `dataset/failures.json`：结构化失败 taxonomy；
 - `demo/compiler.mjs`：可测试的确定性编译逻辑。
 
-从仓库根目录运行：
+**在线版：** [https://jupiterx0910.github.io/video-prompt-lab/](https://jupiterx0910.github.io/video-prompt-lab/)
+
+也可以从仓库根目录本地运行：
 
 ```bash
 git clone https://github.com/jupiterx0910/video-prompt-lab.git
@@ -68,7 +72,7 @@ python -m http.server 8000
 # 打开 http://localhost:8000/demo/
 ```
 
-Demo 入口：[demo/index.html](demo/index.html)
+本地入口：[demo/index.html](demo/index.html)
 
 你可以直接看到四件事同步变化：
 
@@ -76,6 +80,18 @@ Demo 入口：[demo/index.html](demo/index.html)
 2. **Model Router**：根据能力标签做匹配，并保留 evidence / caution；
 3. **Before / After**：同一个任务，比较“形容词 Prompt”和“可控制作规格”；
 4. **Failure Playground**：从可见症状反推根因，并告诉你下一轮只改什么。
+
+## Flagship cases｜三个旗舰案例
+
+这三篇不是“高分 Prompt 展示”，而是完整展示 **Idea → Video IR → Capability → Router → Prompt → Preflight → Failure → Minimal Fix** 的推导链。
+
+| 案例 | 最核心的控制问题 | 完整拆解 |
+|---|---|---|
+| Product / Rain Shoe Hero | Logo / 鞋底状态、材质物理、水体因果 | [查看案例](examples/cases/product-rain-shoe.md) |
+| Dialogue / Café Key Exchange | 说话者归属、声音同步、反应节拍、道具状态 | [查看案例](examples/cases/dialogue-cafe-key.md) |
+| Image-to-Video / Portrait Reaction | 身份保持、低幅运动、只描述源图“变化量” | [查看案例](examples/cases/i2v-portrait-reaction.md) |
+
+没有真实生成与评估记录，就不在案例里编造成功率或质量分数。
 
 ## Before / After：差别不是“写得更长”
 
@@ -188,7 +204,8 @@ GitHub Actions 会检查：
 - `SKILL.md` 是否保留 Video IR、路由、显式模型优先、preflight、诊断优先等核心不变量；
 - Demo 是否真实读取 canonical JSON，而不是藏一套 fallback 数据；
 - 浏览器编译器的路由、显式模型优先、Prompt 编译和 preflight 单测；
-- README 是否仍然保留可安装、可体验的入口。
+- README 是否仍然保留可安装、可体验的入口；
+- V2.3 的 Pages、旗舰案例、发布物料是否仍然存在。
 
 这些测试证明的是**工程结构与确定性逻辑没有回退**，不是给生成视频打“9.7 分”。评分边界见 [evals/scoring.md](evals/scoring.md)。
 
@@ -215,11 +232,17 @@ Resolve Task
 
 默认输出仍然是人能直接使用的：`创意判断 + 模型建议（需要时）+ 主提示词 + 连续性锁 + 负面约束 + 迭代旋钮`。
 
+## Release v2.2.0
+
+`v2.2.0` 对应 V2.2 的编译器与交互式 Demo 里程碑。完整发布说明见 [launch/release-v2.2.0.md](launch/release-v2.2.0.md)。V2.3 的 Growth Layer 只增加分发、在线体验与案例，不改变 V2.2 编译器核心。
+
 ## 仓库导航
 
-| 需求 | 文件 |
+| 需求 | 文件 / 入口 |
 |---|---|
-| 直接体验编译器 | [demo/index.html](demo/index.html) |
+| 在线体验编译器 | [Live Demo](https://jupiterx0910.github.io/video-prompt-lab/) |
+| 本地体验编译器 | [demo/index.html](demo/index.html) |
+| 三个旗舰案例 | [examples/cases/](examples/cases/product-rain-shoe.md) |
 | 理解完整编译器 | [docs/prompt-compiler-v2.md](docs/prompt-compiler-v2.md) |
 | Agent Skill | [SKILL.md](SKILL.md) |
 | 模型能力路由 | [router/models.json](router/models.json) |
@@ -238,7 +261,7 @@ Resolve Task
 | 声音设计 | [references/sound-design.md](references/sound-design.md) |
 | 故障诊断 | [docs/failure-diagnosis.md](docs/failure-diagnosis.md) |
 | Eval | [evals/README.md](evals/README.md) |
-| 案例 | [examples/README.md](examples/README.md) |
+| 发布素材 | [launch/README.md](launch/README.md) |
 
 ## 设计原则
 
