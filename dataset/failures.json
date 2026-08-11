@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "failures": [
+    {
+      "id": "identity-drift",
+      "symptom": "The face, wardrobe, logo, or identifying details change during the shot or across cuts.",
+      "root_cause": "Persistent identity anchors are weak or buried under decorative detail and competing changes.",
+      "fix": "Reduce ornamental description and restate only the stable identity anchors that must persist.",
+      "change_only": "Subject identity and continuity locks; keep camera, lighting, and action unchanged for the next comparison.",
+      "risk_tags": ["identity_drift", "logo_drift", "wardrobe_drift"]
+    },
+    {
+      "id": "motion-without-cause",
+      "symptom": "Movement looks floaty, arbitrary, or physically unmotivated.",
+      "root_cause": "The prompt names motion but not the trigger, force, reaction, or visible consequence.",
+      "fix": "Rewrite the motion as trigger → response → visible consequence and remove secondary action until the primary chain works.",
+      "change_only": "Action causality; do not simultaneously change style or lens language.",
+      "risk_tags": ["physics", "fake_motion", "unmotivated_slow_motion"]
+    },
+    {
+      "id": "camera-conflict",
+      "symptom": "The camera spins, jumps, collides with subjects, or combines incompatible movements.",
+      "root_cause": "Several camera instructions compete for the same short shot.",
+      "fix": "Keep one dominant camera movement, one speed, and one endpoint composition.",
+      "change_only": "Camera movement and stabilization; keep subject blocking fixed.",
+      "risk_tags": ["camera_collision", "camera_conflict", "screen_direction"]
+    },
+    {
+      "id": "synthetic-render-look",
+      "symptom": "The result feels like a game render or generic AI commercial instead of believable footage.",
+      "root_cause": "Generic style adjectives replace capture origin, material behavior, light sources, and small environmental events.",
+      "fix": "Specify who is filming, plausible capture behavior, material response, concrete light sources, and one restrained imperfection.",
+      "change_only": "Footage identity and physical description; do not add more prestige adjectives.",
+      "risk_tags": ["overpolished_ad", "fake_documentary_motion", "synthetic_render"]
+    },
+    {
+      "id": "object-state-reset",
+      "symptom": "A prop teleports, repairs itself, changes shape, or returns to an earlier state.",
+      "root_cause": "The prompt describes the object but does not explicitly preserve its state transition over time.",
+      "fix": "Define the object's before state, the event that changes it, the after state, and lock the after state through the remaining shot or cuts.",
+      "change_only": "Object state and continuity language; keep the rest of the scene stable.",
+      "risk_tags": ["object_state", "prop_reset", "prop_drift"]
+    },
+    {
+      "id": "time-static",
+      "symptom": "The clip behaves like a still image with minor motion and no meaningful progression.",
+      "root_cause": "The prompt describes a composition but not changing information across time.",
+      "fix": "Add two or three beats where action, framing, sound, or visible state changes in sequence.",
+      "change_only": "Time spine and action beats; avoid rewriting every visual attribute.",
+      "risk_tags": ["time_static", "no_progression", "static_composition"]
+    },
+    {
+      "id": "speaker-audio-swap",
+      "symptom": "Dialogue is assigned to the wrong person, lip movement is mismatched, or sound events drift from their sources.",
+      "root_cause": "Speaker attribution and sound-source timing are underspecified relative to the number of people and events.",
+      "fix": "Name the visible speaker for each short line and tie non-dialogue sounds to explicit on-screen or off-screen causes.",
+      "change_only": "Speaker attribution and audio timing; keep camera and blocking unchanged.",
+      "risk_tags": ["speaker_swap", "lip_sync", "audio_desync"]
+    },
+    {
+      "id": "overmotion-i2v",
+      "symptom": "An image-to-video shot deforms the face or scene because too much movement happens at once.",
+      "root_cause": "The prompt asks the input image to support simultaneous subject motion, camera motion, and environmental transformation.",
+      "fix": "Describe only what changes from the source image, prioritize one subject motion, then add one subtle environmental motion if needed.",
+      "change_only": "Motion amplitude and ordering; do not redescribe the entire source image.",
+      "risk_tags": ["overmotion", "input_redescription", "identity_drift"]
+    }
+  ]
+}

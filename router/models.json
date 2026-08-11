@@ -1,0 +1,136 @@
+{
+  "schema_version": 1,
+  "updated": "2026-08-11",
+  "policy": {
+    "explicit_model_wins": true,
+    "check_current_availability": true,
+    "ranking": "capability_match_not_global_rank"
+  },
+  "models": [
+    {
+      "id": "seedance",
+      "family": "Seedance",
+      "strengths": [
+        "text_to_video",
+        "image_to_video",
+        "multi_shot",
+        "multimodal_reference",
+        "audio_video",
+        "complex_motion",
+        "product",
+        "continuity"
+      ],
+      "cautions": [
+        "exact input limits and product surfaces change by release",
+        "dense multi-event prompts still need priority and time structure"
+      ],
+      "prompt_emphasis": [
+        "time order",
+        "subject and reference roles",
+        "action causality",
+        "camera choreography",
+        "audio events when relevant"
+      ],
+      "evidence": "official-doc-informed",
+      "source_note": "ByteDance Seed describes Seedance as supporting text/image and, in newer releases, multimodal references, audio-video generation, complex motion and multi-shot creation."
+    },
+    {
+      "id": "veo",
+      "family": "Veo",
+      "strengths": [
+        "text_to_video",
+        "image_to_video",
+        "dialogue_audio",
+        "sound_sync",
+        "physics",
+        "cinematic_narrative"
+      ],
+      "cautions": [
+        "capabilities differ across Veo model IDs and product surfaces",
+        "audio, reference-image and extension support must be checked for the selected version"
+      ],
+      "prompt_emphasis": [
+        "visual style and scene",
+        "clear beginning middle end",
+        "speaker attribution",
+        "explicit sound sources",
+        "audio-video synchronization"
+      ],
+      "evidence": "official-doc-informed",
+      "source_note": "Google DeepMind documents native audio, dialogue, sound effects, prompt adherence and image-to-video capabilities in current Veo-family offerings."
+    },
+    {
+      "id": "sora",
+      "family": "Sora",
+      "strengths": [
+        "text_to_video",
+        "image_to_video",
+        "cinematic_narrative",
+        "physics",
+        "audio_video"
+      ],
+      "cautions": [
+        "availability has changed materially over time; verify the current API or product before recommending it",
+        "do not assume older storyboard or product features exist on the current surface"
+      ],
+      "prompt_emphasis": [
+        "world state",
+        "physical causality",
+        "shot purpose",
+        "camera path",
+        "synchronized audio when supported"
+      ],
+      "evidence": "official-doc-informed",
+      "source_note": "OpenAI documentation describes Sora 2 as video generation with synchronized audio; current availability and product status should be verified at use time."
+    },
+    {
+      "id": "kling",
+      "family": "Kling",
+      "strengths": [
+        "text_to_video",
+        "image_to_video",
+        "continuity",
+        "character_motion",
+        "product",
+        "social"
+      ],
+      "cautions": [
+        "feature names and limits vary by Kling release",
+        "for image-to-video avoid simultaneously over-specifying subject motion and camera motion"
+      ],
+      "prompt_emphasis": [
+        "what changes from the input image",
+        "subject anchor",
+        "object state",
+        "one dominant camera movement",
+        "motion amplitude"
+      ],
+      "evidence": "heuristic",
+      "source_note": "Profile intentionally uses conservative family-level workflow heuristics; verify the selected Kling version before relying on specific controls."
+    },
+    {
+      "id": "runway",
+      "family": "Runway",
+      "strengths": [
+        "text_to_video",
+        "image_to_video",
+        "camera_choreography",
+        "motion_control",
+        "creative_iteration",
+        "social"
+      ],
+      "cautions": [
+        "prompting guidance differs between text-to-video and image-to-video",
+        "older Gen-4 guidance should not be treated as the capability ceiling of newer releases"
+      ],
+      "prompt_emphasis": [
+        "clear direct language",
+        "motion and temporal progression",
+        "camera work",
+        "for image-to-video do not redescribe the whole input image"
+      ],
+      "evidence": "official-doc-informed",
+      "source_note": "Runway's current guidance supports text-to-video and image-to-video and explicitly recommends motion-focused prompting for image-to-video."
+    }
+  ]
+}
