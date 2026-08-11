@@ -12,6 +12,7 @@ REQUIRED = [
     "SKILL.md",
     "LICENSE",
     "CONTRIBUTING.md",
+    ".github/workflows/pages.yml",
     "docs/prompt-engineering.md",
     "docs/model-adaptation.md",
     "docs/prompt-compiler-v2.md",
@@ -41,6 +42,10 @@ REQUIRED = [
     "templates/social-video.md",
     "templates/product-film.md",
     "examples/README.md",
+    "examples/cases/product-rain-shoe.md",
+    "examples/cases/dialogue-cafe-key.md",
+    "examples/cases/i2v-portrait-reaction.md",
+    "launch/README.md",
 ]
 
 FAILURE_REQUIRED_FIELDS = {
@@ -57,6 +62,12 @@ DEMO_CANONICAL_REFERENCES = (
     "../dataset/cases.json",
     "../dataset/failures.json",
     "./compiler.mjs",
+)
+
+README_GROWTH_MARKERS = (
+    "https://jupiterx0910.github.io/video-prompt-lab/",
+    "Flagship cases",
+    "v2.2.0",
 )
 
 
@@ -136,6 +147,17 @@ def validate_demo(errors: list[str]) -> None:
             errors.append(f"demo/app.js must not load external dependency: {token}")
 
 
+def validate_growth_readme(errors: list[str]) -> None:
+    path = ROOT / "README.md"
+    if not path.is_file():
+        return
+
+    text = path.read_text(encoding="utf-8")
+    for marker in README_GROWTH_MARKERS:
+        if marker not in text:
+            errors.append(f"README.md must include V2.3 growth marker: {marker}")
+
+
 def main() -> int:
     errors: list[str] = []
     for relative in REQUIRED:
@@ -159,6 +181,7 @@ def main() -> int:
 
     validate_failure_taxonomy(errors)
     validate_demo(errors)
+    validate_growth_readme(errors)
 
     markdown_files = list(ROOT.rglob("*.md"))
     link_pattern = re.compile(r"\[[^\]]+\]\((?!https?://|#|mailto:)([^)]+)\)")
