@@ -28,3 +28,6 @@ jobs:
 
       - name: Test demo compiler
         run: node --test demo/compiler.test.mjs
+
+      - name: Check demo browser JS
+        run: node --check demo/app.js
