@@ -1,0 +1,36 @@
+name: Publish Video Prompt Lab v2.2.0
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - ".github/workflows/release-v2-2.yml"
+      - "launch/release-v2.2.0.md"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Create release if missing
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          RELEASE_TAG: v2.2.0
+          RELEASE_TARGET: b4eed435b564552de97d1612240b32f90c867c4d
+        shell: bash
+        run: |
+          set -euo pipefail
+          if gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
+            echo "Release $RELEASE_TAG already exists; nothing to do."
+            exit 0
+          fi
+          gh release create "$RELEASE_TAG" \
+            --target "$RELEASE_TARGET" \
+            --title "Video Prompt Lab v2.2.0 — Prompt Compiler + Interactive Demo" \
+            --notes-file launch/release-v2.2.0.md
