@@ -1,0 +1,68 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "id": "product-rain-shoe",
+      "task": "product",
+      "mode": "text-to-video",
+      "input": "A premium running shoe lands on wet black stone after rain; show water displacement, material detail and a clean hero ending without changing the logo or sole shape.",
+      "required_ir": ["subject", "environment", "action", "camera", "light", "continuity"],
+      "risk_tags": ["logo_drift", "object_state", "unmotivated_slow_motion"],
+      "preferred_capabilities": ["product", "continuity", "complex_motion"]
+    },
+    {
+      "id": "cinematic-market-chase",
+      "task": "cinematic",
+      "mode": "text-to-video",
+      "input": "A courier carrying a red parcel runs through a crowded night market after hearing a motorcycle approach; one continuous shot ends as she slips through a closing metal gate.",
+      "required_ir": ["subject", "environment", "trigger", "action", "consequence", "camera", "sound"],
+      "risk_tags": ["camera_collision", "crowd_duplication", "prop_drift"],
+      "preferred_capabilities": ["cinematic_narrative", "complex_motion", "physics"]
+    },
+    {
+      "id": "social-coffee-ugc",
+      "task": "social",
+      "mode": "text-to-video",
+      "input": "A creator records a casual vertical phone video comparing two iced coffees, takes one sip, reacts naturally, and points to the cup she prefers.",
+      "required_ir": ["subject", "action", "camera", "sound", "continuity"],
+      "risk_tags": ["overpolished_ad", "hand_anatomy", "cup_label_drift"],
+      "preferred_capabilities": ["social", "character_motion"]
+    },
+    {
+      "id": "documentary-station-rain",
+      "task": "documentary",
+      "mode": "text-to-video",
+      "input": "Observational footage of commuters leaving a suburban station during sudden rain; people open umbrellas at different times while the camera operator steps under an awning.",
+      "required_ir": ["environment", "trigger", "action", "camera", "light", "sound"],
+      "risk_tags": ["background_duplication", "fake_documentary_motion", "physics"],
+      "preferred_capabilities": ["physics", "complex_motion"]
+    },
+    {
+      "id": "i2v-portrait-turn",
+      "task": "image-to-video",
+      "mode": "image-to-video",
+      "input": "Animate an existing portrait: the subject hears something off-screen, shifts her eyes first, then turns her head slightly; the curtain behind her moves from a small draft. Preserve face, clothes and framing.",
+      "required_ir": ["subject", "trigger", "action", "camera", "continuity"],
+      "risk_tags": ["identity_drift", "overmotion", "input_redescription"],
+      "preferred_capabilities": ["image_to_video", "continuity", "character_motion"]
+    },
+    {
+      "id": "dialogue-cafe-two-person",
+      "task": "dialogue",
+      "mode": "text-to-video",
+      "input": "Two friends sit in a quiet café. One slides a key across the table and says, 'You keep it.' The other pauses before replying, 'Are you sure?' Cup and room sounds stay synchronized.",
+      "required_ir": ["subject", "action", "camera", "sound", "continuity"],
+      "risk_tags": ["speaker_swap", "lip_sync", "audio_desync"],
+      "preferred_capabilities": ["dialogue_audio", "sound_sync", "cinematic_narrative"]
+    },
+    {
+      "id": "multishot-bike-delivery",
+      "task": "multi-shot",
+      "mode": "text-to-video",
+      "input": "Three-shot micro-story: a bicycle courier checks an address, rides through a narrow lane, then hands the same dented package to a shopkeeper. Preserve courier, jacket, bicycle and package damage across cuts.",
+      "required_ir": ["subject", "environment", "action", "camera", "time", "continuity"],
+      "risk_tags": ["identity_drift", "prop_reset", "screen_direction"],
+      "preferred_capabilities": ["multi_shot", "continuity", "cinematic_narrative"]
+    }
+  ]
+}
