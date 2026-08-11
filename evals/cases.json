@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "id": "route-dialogue-audio",
+      "type": "route",
+      "required_capabilities": ["dialogue_audio", "sound_sync"],
+      "expected_candidates": ["veo"]
+    },
+    {
+      "id": "route-image-continuity",
+      "type": "route",
+      "required_capabilities": ["image_to_video", "continuity"],
+      "expected_candidates": ["seedance", "kling"]
+    },
+    {
+      "id": "route-native-multishot",
+      "type": "route",
+      "required_capabilities": ["multi_shot", "continuity"],
+      "expected_candidates": ["seedance"]
+    },
+    {
+      "id": "prompt-product-causality",
+      "type": "prompt",
+      "prompt_fixture": "10 seconds, 16:9. A black running shoe lands heel-first on wet stone after a drop of rainwater hits the surface; the sole compresses, water pushes outward, and the shoe settles into a clean three-quarter hero angle. Medium close shot at product height, 50mm feel, slow 20 cm push-in only. Preserve logo geometry, sole pattern and lace state. Avoid logo drift, changing sole geometry, floating water and unmotivated slow motion.",
+      "required_terms": ["lands", "water pushes outward", "push-in", "preserve", "avoid"],
+      "forbidden_terms": ["masterpiece", "8k", "best quality"]
+    },
+    {
+      "id": "prompt-documentary-source",
+      "type": "prompt",
+      "prompt_fixture": "Observational handheld footage outside a suburban station during sudden rain. A first commuter opens an umbrella, two others react a beat later, and the camera operator steps under the awning as droplets hit the lens edge. Chest-height medium-wide framing, one small backward step, natural stabilization lag. Preserve ordinary clothing and screen direction. Avoid duplicated pedestrians, glossy commercial lighting and impossible rain behavior.",
+      "required_terms": ["observational", "react", "camera operator", "preserve", "avoid"],
+      "forbidden_terms": ["epic cinematic masterpiece", "ultra detailed 8k"]
+    }
+  ]
+}
