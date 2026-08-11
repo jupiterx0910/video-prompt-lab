@@ -25,3 +25,6 @@ jobs:
 
       - name: Run deterministic evals
         run: python evals/run_evals.py
+
+      - name: Test demo compiler
+        run: node --test demo/compiler.test.mjs
