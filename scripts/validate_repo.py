@@ -25,6 +25,11 @@ REQUIRED = [
     "evals/cases.json",
     "evals/run_evals.py",
     "evals/scoring.md",
+    "demo/index.html",
+    "demo/styles.css",
+    "demo/app.js",
+    "demo/compiler.mjs",
+    "demo/compiler.test.mjs",
     "references/camera-language.md",
     "references/motion-continuity.md",
     "references/lighting-color.md",
@@ -46,6 +51,13 @@ FAILURE_REQUIRED_FIELDS = {
     "change_only",
     "risk_tags",
 }
+
+DEMO_CANONICAL_REFERENCES = (
+    "../router/models.json",
+    "../dataset/cases.json",
+    "../dataset/failures.json",
+    "./compiler.mjs",
+)
 
 
 def validate_failure_taxonomy(errors: list[str]) -> None:
@@ -103,6 +115,27 @@ def validate_failure_taxonomy(errors: list[str]) -> None:
             )
 
 
+def validate_demo(errors: list[str]) -> None:
+    app_path = ROOT / "demo/app.js"
+    if not app_path.is_file():
+        return
+
+    text = app_path.read_text(encoding="utf-8")
+    for reference in DEMO_CANONICAL_REFERENCES:
+        if reference not in text:
+            errors.append(f"demo/app.js must reference canonical source: {reference}")
+
+    forbidden = (
+        "https://cdn.jsdelivr.net",
+        "https://unpkg.com",
+        "fonts.googleapis.com",
+        "cdnjs.cloudflare.com",
+    )
+    for token in forbidden:
+        if token in text:
+            errors.append(f"demo/app.js must not load external dependency: {token}")
+
+
 def main() -> int:
     errors: list[str] = []
     for relative in REQUIRED:
@@ -125,6 +158,7 @@ def main() -> int:
                 )
 
     validate_failure_taxonomy(errors)
+    validate_demo(errors)
 
     markdown_files = list(ROOT.rglob("*.md"))
     link_pattern = re.compile(r"\[[^\]]+\]\((?!https?://|#|mailto:)([^)]+)\)")
