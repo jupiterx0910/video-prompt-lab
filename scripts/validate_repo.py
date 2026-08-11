@@ -1,6 +1,7 @@
 """Small zero-dependency integrity check for Video Prompt Lab."""
 
 from pathlib import Path
+import json
 import re
 import sys
 
@@ -13,6 +14,16 @@ REQUIRED = [
     "CONTRIBUTING.md",
     "docs/prompt-engineering.md",
     "docs/model-adaptation.md",
+    "docs/prompt-compiler-v2.md",
+    "docs/failure-diagnosis.md",
+    "router/models.json",
+    "router/README.md",
+    "dataset/cases.json",
+    "dataset/README.md",
+    "evals/README.md",
+    "evals/cases.json",
+    "evals/run_evals.py",
+    "evals/scoring.md",
     "references/camera-language.md",
     "references/motion-continuity.md",
     "references/lighting-color.md",
@@ -36,6 +47,18 @@ def main() -> int:
         elif path.stat().st_size < 80:
             errors.append(f"file is unexpectedly small: {relative}")
 
+    for folder in ("router", "dataset", "evals"):
+        directory = ROOT / folder
+        if not directory.exists():
+            continue
+        for path in directory.rglob("*.json"):
+            try:
+                json.loads(path.read_text(encoding="utf-8"))
+            except json.JSONDecodeError as exc:
+                errors.append(
+                    f"invalid JSON in {path.relative_to(ROOT)}: line {exc.lineno}: {exc.msg}"
+                )
+
     markdown_files = list(ROOT.rglob("*.md"))
     link_pattern = re.compile(r"\[[^\]]+\]\((?!https?://|#|mailto:)([^)]+)\)")
     for path in markdown_files:
@@ -54,7 +77,10 @@ def main() -> int:
             print(f"- {error}")
         return 1
 
-    print(f"Validation passed: {len(REQUIRED)} required files, {len(markdown_files)} Markdown files.")
+    print(
+        f"Validation passed: {len(REQUIRED)} required files, "
+        f"{len(markdown_files)} Markdown files, JSON parsed successfully."
+    )
     return 0
 
 
