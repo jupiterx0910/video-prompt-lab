@@ -1,4 +1,4 @@
-"""Deterministic, zero-dependency regression checks for Video Prompt Lab v2.1."""
+"""Deterministic, zero-dependency regression checks for Video Prompt Lab v2.2."""
 
 from __future__ import annotations
 
@@ -37,6 +37,12 @@ SKILL_INVARIANTS = {
     "explicit": "Skill must describe precedence for an explicitly requested model.",
     "preflight": "Skill must perform a preflight check before final output.",
     "diagnos": "Skill must diagnose failed generations before rewriting blindly.",
+}
+README_INVARIANTS = {
+    "npx skills add jupiterx0910/video-prompt-lab": "README must expose the verified one-command Skills CLI install.",
+    "python -m http.server": "README must show how to launch the zero-dependency demo locally.",
+    "demo/index.html": "README must link or reference the interactive demo entry point.",
+    "compiler-demo.svg": "README must surface the compiler demo visual asset.",
 }
 
 
@@ -217,12 +223,32 @@ def validate_skill(errors: list[str]) -> None:
             errors.append(message)
 
 
+def validate_readmes(errors: list[str]) -> None:
+    for relative in ("README.md", "README_EN.md"):
+        path = ROOT / relative
+        try:
+            text = path.read_text(encoding="utf-8")
+        except FileNotFoundError:
+            errors.append(f"missing {relative}")
+            continue
+
+        lowered = text.lower()
+        for token, message in README_INVARIANTS.items():
+            if token.lower() not in lowered:
+                errors.append(f"{relative}: {message}")
+
+    asset = ROOT / "docs/assets/compiler-demo.svg"
+    if not asset.is_file() or asset.stat().st_size < 400:
+        errors.append("docs/assets/compiler-demo.svg must exist as a meaningful repository-authored demo visual")
+
+
 def main() -> int:
     errors: list[str] = []
     models, capabilities = validate_router(errors)
     validate_dataset(capabilities, errors)
     validate_eval_cases(models, errors)
     validate_skill(errors)
+    validate_readmes(errors)
 
     if errors:
         print("Eval failed:")
@@ -234,7 +260,7 @@ def main() -> int:
         "Eval passed: "
         f"{len(models)} model profiles, "
         f"{len(capabilities)} capability tags, "
-        "dataset coverage and Skill invariants valid."
+        "dataset coverage, Skill and README invariants valid."
     )
     return 0
 
