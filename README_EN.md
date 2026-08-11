@@ -3,7 +3,9 @@
 > **Compile an idea into a controllable, diagnosable production specification instead of stacking cinematic adjectives.**
 
 [![CI](https://img.shields.io/github/actions/workflow/status/jupiterx0910/video-prompt-lab/validate.yml?branch=main&label=validation)](.github/workflows/validate.yml)
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-2ea44f)](https://jupiterx0910.github.io/video-prompt-lab/)
 [![skills.sh](https://skills.sh/b/jupiterx0910/video-prompt-lab)](https://skills.sh/jupiterx0910/video-prompt-lab)
+[![Release Notes](https://img.shields.io/badge/release-v2.2.0-7657ff)](launch/release-v2.2.0.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Router](https://img.shields.io/badge/Router-Seedance%20·%20Veo%20·%20Sora%20·%20Kling%20·%20Runway-7657ff)](router/models.json)
 [![中文](https://img.shields.io/badge/README-中文-blue)](README.md)
@@ -14,7 +16,7 @@ Video Prompt Lab is an open prompt compiler for **text-to-video, image-to-video,
 npx skills add jupiterx0910/video-prompt-lab
 ```
 
-**Start here:** [Try the interactive demo](demo/index.html) · [Install the Agent Skill](SKILL.md) · [Read the compiler architecture](docs/prompt-compiler-v2.md)
+**Start here:** [Try the live demo](https://jupiterx0910.github.io/video-prompt-lab/) · [Install the Agent Skill](SKILL.md) · [Read the compiler architecture](docs/prompt-compiler-v2.md)
 
 ![Video Prompt Lab compiler demo](docs/assets/compiler-demo.svg)
 
@@ -59,7 +61,9 @@ V2.2 adds a **zero-dependency static demo**. It is not a chatbot wrapper and it 
 - `dataset/failures.json` — structured failure taxonomy;
 - `demo/compiler.mjs` — deterministic, tested compiler logic.
 
-From the repository root:
+**Live:** [https://jupiterx0910.github.io/video-prompt-lab/](https://jupiterx0910.github.io/video-prompt-lab/)
+
+Or run locally from the repository root:
 
 ```bash
 git clone https://github.com/jupiterx0910/video-prompt-lab.git
@@ -68,7 +72,7 @@ python -m http.server 8000
 # open http://localhost:8000/demo/
 ```
 
-Demo entry point: [demo/index.html](demo/index.html)
+Local entry point: [demo/index.html](demo/index.html)
 
 The interface exposes four things at once:
 
@@ -76,6 +80,18 @@ The interface exposes four things at once:
 2. **Model Router** — capability matching plus evidence and cautions;
 3. **Before / After** — the same brief as weak prose versus a controllable production specification;
 4. **Failure Playground** — visible symptom → root cause → minimal repair → “change only” guidance.
+
+## Flagship cases
+
+These are not “best prompt” galleries. Each one shows the full reasoning chain: **Idea → Video IR → Capability → Router → Prompt → Preflight → Failure → Minimal Fix**.
+
+| Case | Main control problem | Walkthrough |
+|---|---|---|
+| Product / Rain Shoe Hero | logo/sole state, material physics, water causality | [Read](examples/cases/product-rain-shoe.md) |
+| Dialogue / Café Key Exchange | speaker attribution, sound sync, reaction timing, prop state | [Read](examples/cases/dialogue-cafe-key.md) |
+| Image-to-Video / Portrait Reaction | identity preservation, restrained motion, source-image delta | [Read](examples/cases/i2v-portrait-reaction.md) |
+
+No real generation evidence means no fabricated render score or success rate.
 
 ## Before / After: the difference is not prompt length
 
@@ -191,7 +207,8 @@ GitHub Actions checks:
 - explicit-model precedence, compiler output, and preflight behavior;
 - that the demo reads canonical JSON rather than embedding a hidden fallback dataset;
 - browser JS syntax;
-- that README onboarding still exposes install and demo paths.
+- that README onboarding still exposes install and demo paths;
+- V2.3 Pages, flagship cases, and launch surfaces remain present.
 
 A green structural eval is **not** a video-quality benchmark. See [evals/scoring.md](evals/scoring.md).
 
@@ -218,9 +235,17 @@ Resolve Task
 
 Default output remains practical and copy-ready: creative judgment, optional model recommendation, main prompt, continuity lock, targeted constraints, and iteration knobs.
 
+## Release v2.2.0
+
+`v2.2.0` marks the compiler + interactive-demo milestone. Exact release notes are in [launch/release-v2.2.0.md](launch/release-v2.2.0.md). The V2.3 growth layer adds distribution, live access, and flagship walkthroughs without changing the V2.2 compiler core.
+
 ## Navigation
 
-- [Interactive demo](demo/index.html)
+- [Live interactive demo](https://jupiterx0910.github.io/video-prompt-lab/)
+- [Local interactive demo](demo/index.html)
+- [Product flagship case](examples/cases/product-rain-shoe.md)
+- [Dialogue flagship case](examples/cases/dialogue-cafe-key.md)
+- [Image-to-video flagship case](examples/cases/i2v-portrait-reaction.md)
 - [Prompt compiler architecture](docs/prompt-compiler-v2.md)
 - [Agent Skill](SKILL.md)
 - [Model router](router/models.json)
@@ -239,6 +264,7 @@ Default output remains practical and copy-ready: creative judgment, optional mod
 - [Sound design](references/sound-design.md)
 - [Failure diagnosis](docs/failure-diagnosis.md)
 - [Eval system](evals/README.md)
+- [Launch pack](launch/README.md)
 
 ## Principles
 
