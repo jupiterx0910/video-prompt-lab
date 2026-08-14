@@ -1,6 +1,10 @@
-# Video Prompt Lab｜AI 视频提示词编译器
+<div align="center">
 
-> **把一句灵感编译成可执行、可诊断、可迭代的视频制作规格，而不是堆一串“电影感”形容词。**
+# Video Prompt Lab
+
+### AI 视频提示词编译器 · AI Video Prompt Compiler
+
+> **别人给你一段 Prompt；这个项目把一句灵感编译成可路由、可诊断、可回归测试的视频制作规格。**
 
 [![CI](https://img.shields.io/github/actions/workflow/status/jupiterx0910/video-prompt-lab/validate.yml?branch=main&label=validation)](.github/workflows/validate.yml)
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-2ea44f)](https://jupiterx0910.github.io/video-prompt-lab/)
@@ -10,13 +14,35 @@
 [![Models](https://img.shields.io/badge/Router-Seedance%20·%20Veo%20·%20Sora%20·%20Kling%20·%20Runway-7657ff)](router/models.json)
 [![Language](https://img.shields.io/badge/Language-中文%20%7C%20English-blue)](README_EN.md)
 
-Video Prompt Lab 是一个面向 **文生视频、图生视频和 Agent 工作流** 的开源 Prompt Compiler。它先把创意规范化成 **Video IR（视频中间表示）**，再推导能力需求、解释模型路由、编译 Prompt、做 preflight；生成失败后，不重写整条 Prompt，而是先定位失败层。
+**[▶ 在线体验 Compiler](https://jupiterx0910.github.io/video-prompt-lab/) · [⚡ 安装 Agent Skill](SKILL.md) · [🧪 看 3 个旗舰案例](#flagship-cases三个旗舰案例) · [🧠 读编译器架构](docs/prompt-compiler-v2.md)**
+
+</div>
+
+## 它和普通 Prompt 库到底差在哪？
+
+多数 AI 视频 Prompt 项目解决的是：**“应该写哪些词？”**
+
+Video Prompt Lab 解决的是：**“这段视频为什么会这样发生、什么必须保持不变、哪个模型更匹配、失败后究竟该改哪一层？”**
+
+```text
+Idea
+→ Video IR
+→ Capability Inference
+→ Model Router
+→ Model-aware Prompt
+→ Preflight
+→ Generate
+→ Failure Diagnosis
+→ Change only 1–2 variables
+```
+
+所以它不是 Prompt 收藏夹，而是一套 **可编译、可路由、可诊断、可回归测试** 的 AI 视频工作流。
 
 ```bash
 npx skills add jupiterx0910/video-prompt-lab
 ```
 
-**三个入口：** [在线体验 Live Demo](https://jupiterx0910.github.io/video-prompt-lab/) · [安装 Agent Skill](SKILL.md) · [阅读编译器架构](docs/prompt-compiler-v2.md)
+> 如果你也认为 AI 视频 Prompt 应该从“文案技巧”走向“工程系统”，欢迎 ⭐ Star，让更多做 AI 视频的人发现这套方法。
 
 ![Video Prompt Lab compiler demo](docs/assets/compiler-demo.svg)
 

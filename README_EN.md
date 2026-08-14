@@ -1,6 +1,10 @@
-# Video Prompt Lab — AI Video Prompt Compiler
+<div align="center">
 
-> **Compile an idea into a controllable, diagnosable production specification instead of stacking cinematic adjectives.**
+# Video Prompt Lab
+
+### AI Video Prompt Compiler
+
+> **Most repositories give you prompts. This one turns an idea into a routable, diagnosable, regression-tested production specification.**
 
 [![CI](https://img.shields.io/github/actions/workflow/status/jupiterx0910/video-prompt-lab/validate.yml?branch=main&label=validation)](.github/workflows/validate.yml)
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-GitHub%20Pages-2ea44f)](https://jupiterx0910.github.io/video-prompt-lab/)
@@ -10,13 +14,35 @@
 [![Router](https://img.shields.io/badge/Router-Seedance%20·%20Veo%20·%20Sora%20·%20Kling%20·%20Runway-7657ff)](router/models.json)
 [![中文](https://img.shields.io/badge/README-中文-blue)](README.md)
 
-Video Prompt Lab is an open prompt compiler for **text-to-video, image-to-video, and agent workflows**. It normalizes creative intent into a **Video IR**, infers capability requirements, explains model routing, compiles a model-aware prompt, runs preflight, and diagnoses the failed layer before you rewrite anything.
+**[▶ Try the live compiler](https://jupiterx0910.github.io/video-prompt-lab/) · [⚡ Install the Agent Skill](SKILL.md) · [🧪 Read 3 flagship cases](#flagship-cases) · [🧠 Read the compiler architecture](docs/prompt-compiler-v2.md)**
+
+</div>
+
+## What makes this different from a prompt library?
+
+Most AI video prompt projects answer: **“which words should I use?”**
+
+Video Prompt Lab asks: **“what must happen over time, what must stay stable, which model capabilities are required, and which control layer should change after a failed render?”**
+
+```text
+Idea
+→ Video IR
+→ Capability Inference
+→ Model Router
+→ Model-aware Prompt
+→ Preflight
+→ Generate
+→ Failure Diagnosis
+→ Change only 1–2 variables
+```
+
+It is not a prompt collection. It is a **compilable, routable, diagnosable, regression-tested AI video workflow**.
 
 ```bash
 npx skills add jupiterx0910/video-prompt-lab
 ```
 
-**Start here:** [Try the live demo](https://jupiterx0910.github.io/video-prompt-lab/) · [Install the Agent Skill](SKILL.md) · [Read the compiler architecture](docs/prompt-compiler-v2.md)
+> If you think AI video prompting should evolve from copywriting tricks into an engineering system, a ⭐ Star helps more builders discover the project.
 
 ![Video Prompt Lab compiler demo](docs/assets/compiler-demo.svg)
 
