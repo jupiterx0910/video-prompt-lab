@@ -1,0 +1,23 @@
+name: Validate Agent Skill
+
+on:
+  push:
+    paths:
+      - 'skill/**'
+      - 'scripts/validate_skill.py'
+      - '.github/workflows/skill-validation.yml'
+  pull_request:
+    paths:
+      - 'skill/**'
+      - 'scripts/validate_skill.py'
+      - '.github/workflows/skill-validation.yml'
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.x'
+      - run: python scripts/validate_skill.py
