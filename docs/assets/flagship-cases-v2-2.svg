@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-labelledby="title desc">
+  <title id="title">Video Prompt Lab v2.2 — Three Flagship Cases</title>
+  <desc id="desc">A visual overview of three flagship cases: product rain shoe hero, cafe dialogue key exchange, and image-to-video portrait reaction. Each follows Idea, Video IR, Router, Prompt, Failure, Minimal Fix, and Final Render.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#071018"/><stop offset="1" stop-color="#111827"/></linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0d1b26"/><stop offset="1" stop-color="#101827"/></linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="8" stdDeviation="10" flood-opacity=".28"/></filter>
+    <style>
+      .h{font:700 30px Inter,Arial,sans-serif;fill:#f8fafc}.sub{font:500 16px Inter,Arial,sans-serif;fill:#94a3b8}.case{font:700 22px Inter,Arial,sans-serif;fill:#f8fafc}.label{font:700 13px Inter,Arial,sans-serif;fill:#67e8f9;letter-spacing:1px}.body{font:500 14px Inter,Arial,sans-serif;fill:#cbd5e1}.small{font:500 12px Inter,Arial,sans-serif;fill:#94a3b8}.ok{font:700 13px Inter,Arial,sans-serif;fill:#86efac}.bad{font:700 13px Inter,Arial,sans-serif;fill:#fca5a5}.fix{font:700 13px Inter,Arial,sans-serif;fill:#fde68a}
+    </style>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <text x="50" y="55" class="h">🎬 Three Flagship Cases — Video Prompt Lab v2.2</text>
+  <text x="50" y="84" class="sub">Idea → Video IR → Model Router → Final Prompt → Render → Failure Diagnosis → Minimal Fix</text>
+  <rect x="1240" y="28" width="310" height="58" rx="12" fill="#092218" stroke="#22c55e"/>
+  <text x="1262" y="53" class="ok">● VERIFIED PROJECT ARTIFACT</text>
+  <text x="1262" y="73" class="small">Visual case-study overview · no fabricated scores</text>
+
+  <!-- Row 1 -->
+  <rect x="40" y="115" width="1520" height="220" rx="16" fill="url(#card)" stroke="#334155" filter="url(#shadow)"/>
+  <rect x="40" y="115" width="8" height="220" rx="4" fill="#38bdf8"/>
+  <text x="70" y="148" class="case">01 · Product / Rain Shoe Hero</text>
+  <text x="70" y="173" class="sub">8s · 16:9 · cinematic product commercial</text>
+  <text x="70" y="202" class="label">CONTROL PROBLEM</text>
+  <text x="70" y="224" class="body">Product identity + water physics + hero endpoint</text>
+  <text x="70" y="255" class="label">IR → ROUTER</text>
+  <text x="70" y="277" class="body">persistent shoe / wet street / impact → splash → settle / low angle</text>
+  <text x="70" y="301" class="body">Candidate: Kling · Veo · Seedance · Runway</text>
+  <rect x="500" y="145" width="300" height="150" rx="12" fill="#0b1220" stroke="#334155"/>
+  <text x="520" y="171" class="label">FIRST RENDER</text><text x="520" y="198" class="body">Strong product detail</text><text x="520" y="220" class="body">Water motion follows impact</text><text x="520" y="242" class="ok">✓ final composition holds</text>
+  <rect x="825" y="145" width="300" height="150" rx="12" fill="#211116" stroke="#7f1d1d"/>
+  <text x="845" y="171" class="label" style="fill:#fca5a5">FAILURE EXAMPLE</text><text x="845" y="198" class="body">Too dark · muddy reflections</text><text x="845" y="220" class="body">product detail gets lost</text><text x="845" y="242" class="bad">✕ lighting / visibility layer</text>
+  <rect x="1150" y="145" width="380" height="150" rx="12" fill="#102015" stroke="#166534"/>
+  <text x="1170" y="171" class="label" style="fill:#86efac">MINIMAL FIX → FINAL</text><text x="1170" y="198" class="body">Add key light + rim separation</text><text x="1170" y="220" class="body">clean puddle reflections</text><text x="1170" y="242" class="ok">✓ preserve motion + product state</text>
+
+  <!-- Row 2 -->
+  <rect x="40" y="355" width="1520" height="220" rx="16" fill="url(#card)" stroke="#334155" filter="url(#shadow)"/>
+  <rect x="40" y="355" width="8" height="220" rx="4" fill="#c084fc"/>
+  <text x="70" y="388" class="case">02 · Dialogue / Café Key Exchange</text>
+  <text x="70" y="413" class="sub">10–12s · 16:9 · cinematic dialogue</text>
+  <text x="70" y="442" class="label">CONTROL PROBLEM</text>
+  <text x="70" y="464" class="body">speaker attribution + reaction timing + prop state + audio sync</text>
+  <text x="70" y="495" class="label">IR → ROUTER</text>
+  <text x="70" y="517" class="body">man / woman / key / café / handoff → reaction / over-shoulder → two-shot</text>
+  <text x="70" y="541" class="body">Candidate: Veo · Kling · Sora · Runway</text>
+  <rect x="500" y="385" width="300" height="150" rx="12" fill="#0b1220" stroke="#334155"/>
+  <text x="520" y="411" class="label">FIRST RENDER</text><text x="520" y="438" class="body">Natural blocking</text><text x="520" y="460" class="body">dialogue pacing is readable</text><text x="520" y="482" class="ok">✓ prop transfer remains legible</text>
+  <rect x="825" y="385" width="300" height="150" rx="12" fill="#211116" stroke="#7f1d1d"/>
+  <text x="845" y="411" class="label" style="fill:#fca5a5">FAILURE EXAMPLE</text><text x="845" y="438" class="body">Over-acted expressions</text><text x="845" y="460" class="body">pace feels staged</text><text x="845" y="482" class="bad">✕ performance layer</text>
+  <rect x="1150" y="385" width="380" height="150" rx="12" fill="#102015" stroke="#166534"/>
+  <text x="1170" y="411" class="label" style="fill:#86efac">MINIMAL FIX → FINAL</text><text x="1170" y="438" class="body">Reduce expression intensity</text><text x="1170" y="460" class="body">slower pacing + softer eye contact</text><text x="1170" y="482" class="ok">✓ keep camera + prop state intact</text>
+
+  <!-- Row 3 -->
+  <rect x="40" y="595" width="1520" height="220" rx="16" fill="url(#card)" stroke="#334155" filter="url(#shadow)"/>
+  <rect x="40" y="595" width="8" height="220" rx="4" fill="#4ade80"/>
+  <text x="70" y="628" class="case">03 · Image-to-Video / Portrait Reaction</text>
+  <text x="70" y="653" class="sub">8s · 9:16 · source-image controlled motion</text>
+  <text x="70" y="682" class="label">CONTROL PROBLEM</text>
+  <text x="70" y="704" class="body">identity preservation + low-amplitude motion + source fidelity</text>
+  <text x="70" y="735" class="label">IR → ROUTER</text>
+  <text x="70" y="757" class="body">portrait / looks up + smiles / soft breeze / static → subtle motion</text>
+  <text x="70" y="781" class="body">Candidate: Seedance · Kling · Veo · Runway</text>
+  <rect x="500" y="625" width="300" height="150" rx="12" fill="#0b1220" stroke="#334155"/>
+  <text x="520" y="651" class="label">FIRST RENDER</text><text x="520" y="678" class="body">identity mostly holds</text><text x="520" y="700" class="body">natural hair / breeze motion</text><text x="520" y="722" class="ok">✓ source composition preserved</text>
+  <rect x="825" y="625" width="300" height="150" rx="12" fill="#211116" stroke="#7f1d1d"/>
+  <text x="845" y="651" class="label" style="fill:#fca5a5">FAILURE EXAMPLE</text><text x="845" y="678" class="body">Flicker + unstable facial details</text><text x="845" y="700" class="body">motion amplitude too high</text><text x="845" y="722" class="bad">✕ identity / temporal layer</text>
+  <rect x="1150" y="625" width="380" height="150" rx="12" fill="#102015" stroke="#166534"/>
+  <text x="1170" y="651" class="label" style="fill:#86efac">MINIMAL FIX → FINAL</text><text x="1170" y="678" class="body">Lower motion strength</text><text x="1170" y="700" class="body">add temporal smoothing</text><text x="1170" y="722" class="ok">✓ preserve identity anchors</text>
+
+  <text x="50" y="850" class="small">Visual companion for the canonical case-study set. This artifact documents the intended workflow; it does not claim measured render benchmarks.</text>
+  <text x="1150" y="850" class="fix">Live demo → jupiterx0910.github.io/video-prompt-lab/</text>
+</svg>
