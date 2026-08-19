@@ -1,0 +1,21 @@
+{
+  "name": "video-prompt-compiler",
+  "version": "2.4.0",
+  "description": "Compile video ideas into model-aware, controllable production prompts.",
+  "entry": "SKILL.md",
+  "capabilities": [
+    "video-ir",
+    "prompt-compilation",
+    "model-routing",
+    "preflight",
+    "failure-diagnosis",
+    "iterative-refinement"
+  ],
+  "models": ["seedance", "veo", "sora", "kling", "runway"],
+  "references": [
+    "references/video-ir.md",
+    "references/model-router.md",
+    "references/failure-diagnosis.md",
+    "references/prompt-patterns.md"
+  ]
+}
